@@ -8,7 +8,7 @@ type Props = {
 
 export const Button = ({label, icon, onClick}: Props) => {
     return (
-        <C.Conteiner>
+        <C.Conteiner onClick={onClick}>
             {icon &&
             <C.IconArea>
                 <C.Icon src={icon} />

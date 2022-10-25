@@ -17,7 +17,7 @@ const App = () => {
   const [shownCount, setShownCount] = useState<number>(0);
   const [gridItens, setGridItens] = useState<GridItenType[]>([]);
 
-  useEffect(()=> resetCreateGrid(), []);
+  useEffect(() => resetCreateGrid(), []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -52,7 +52,7 @@ const App = () => {
         setShownCount(0);
        },1000)
       }
-        setMoveCount(moveCount + 1);
+        setMoveCount(moveCount => moveCount + 1);
       }
     }
   }, [shownCount, gridItens]);
@@ -71,10 +71,9 @@ const App = () => {
     setShownCount(0);
     //step 2 - create grid
     let tmpGrid: GridItenType[] = [];
-    for(let i = 0; i < (itens.length * 2); i++) {
-      tmpGrid.push({item: null, shown: false, permanentShown: false
+    for(let i = 0; i < (itens.length * 2); i++) tmpGrid.push({item: null, shown: false, permanentShown: false
       });
-    }
+    
     for(let w = 0; w < 2; w++) {
       for(let i = 0; i < itens.length; i++) {
         let pos = -1;
@@ -105,12 +104,12 @@ const App = () => {
   return (
    <C.Conteiner>
     <C.info>
-      <C.LogoLink>
+      <C.LogoLink href=''>
         <img src={logoImage} width="200" alt="" />
       </C.LogoLink>
 
       <C.infoArea>
-        <InfoItem value={formatTimeElapsed(timeElapsed)} label='Tempo' />
+        <InfoItem label='Tempo' value={formatTimeElapsed(timeElapsed)}  />
         <InfoItem label='Movimentos' value={moveCount.toString()} />
       </C.infoArea>
       <Button label="Reiniciar" icon={RestartIcon} onClick={resetCreateGrid}/>
